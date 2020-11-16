@@ -564,13 +564,15 @@
         el: '#comments' ,
         verify: false,
         notify: false,
-        appId: 'EYSLgCgjUoe1YyqTf9c0fIo2-gzGzoHsz',
-        appKey: 'zYuKDzOAs0A0UfjKxr6qrTr7',
+        appId: '7o3mogd7So9cgWcrgYQ4bKmB-MdYXbMMI',
+        appKey: 'GmPDm40j7prvzfTBdDpM8zHI',
         lang: 'en',
-        placeholder: 'Email is optional. With email provided, you will be informed via email once you get a reply.',
+        placeholder: 'Email is optional and will not be displayed. With email provided, you will be informed via email once you get a reply.',
         avatar:'hide',
         guest_info:guest,
-        pageSize:'10' || 10
+        pageSize:'10' || 10,
+	visitor: true, //访客人数
+	serverURLs: 'https://7o3mogd7.api.lncldglobal.com' //在_config.yml中控制valine指向的服务器
     });
   </script>
 
@@ -585,8 +587,12 @@
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("EYSLgCgjUoe1YyqTf9c0fIo2-gzGzoHsz", "zYuKDzOAs0A0UfjKxr6qrTr7");</script>
+
+  
+  
+  
+
+  <script>AV.initialize("7o3mogd7So9cgWcrgYQ4bKmB-MdYXbMMI", "GmPDm40j7prvzfTBdDpM8zHI");</script>
   <script>
     function showTime(Counter) {
       var query = new AV.Query(Counter);
