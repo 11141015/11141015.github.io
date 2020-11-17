@@ -320,6 +320,20 @@
 
           
           
+             <span id="/2020/11/14/%E5%B0%8F%E5%90%B4%E7%9A%8422%E5%B2%81%E7%94%9F%E6%97%A5/" class="leancloud_visitors" data-flag-title="小吴的22岁生日">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+
+		 
+                 <span class="post-meta-item-text">Views:</span>
+
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -462,6 +476,20 @@
           
 
           
+          
+             <span id="/2020/10/22/Started-Our-Relationship/" class="leancloud_visitors" data-flag-title="Started Our Relationship">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+
+		 
+                 <span class="post-meta-item-text">Views:</span>
+
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -805,11 +833,7 @@
 
 
   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  //注释掉了原始版本的Valine
-  //<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  //以下版本是自己修改后的Valine
-  //路径是 hexo/next/source/js/src/Valine.min.js
-  <script src="../js/src/Valine.min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
   
   <script type="text/javascript">
     var GUEST = ['nick','mail'];
@@ -824,11 +848,11 @@
         appId: '7o3mogd7So9cgWcrgYQ4bKmB-MdYXbMMI',
         appKey: 'GmPDm40j7prvzfTBdDpM8zHI',
         lang: 'en',
-        placeholder: 'Email is confidential and will not be displayed. With email provided, you will be informed via email once you get a reply.',
+        placeholder: 'Email is optional and will not be displayed. With email provided, you will be informed via email once you get a reply.',
         avatar:'hide',
         guest_info:guest,
-	visitor: true,
         pageSize:'10' || 10,
+	visitor: true, //访客人数
 	serverURLs: 'https://7o3mogd7.api.lncldglobal.com' //在_config.yml中控制valine指向的服务器
     });
   </script>
@@ -842,6 +866,117 @@
 
 
   
+
+  
+
+  
+  
+  
+
+  <script>AV.initialize("7o3mogd7So9cgWcrgYQ4bKmB-MdYXbMMI", "GmPDm40j7prvzfTBdDpM8zHI");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 
