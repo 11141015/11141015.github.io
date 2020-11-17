@@ -584,7 +584,11 @@
 
 
   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  //注释掉了原始版本的Valine
+  //<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  //以下版本是自己修改后的Valine
+  //路径是 hexo/next/source/js/src/Valine.min.js
+  <script src="../js/src/Valine.min.js"></script>
   
   <script type="text/javascript">
     var GUEST = ['nick','mail'];
@@ -599,7 +603,7 @@
         appId: '7o3mogd7So9cgWcrgYQ4bKmB-MdYXbMMI',
         appKey: 'GmPDm40j7prvzfTBdDpM8zHI',
         lang: 'en',
-        placeholder: 'Email is optional and will not be displayed. With email provided, you will be informed via email once you get a reply.',
+        placeholder: 'Email is confidential and will not be displayed. With email provided, you will be informed via email once you get a reply.',
         avatar:'hide',
         guest_info:guest,
         pageSize:'10' || 10,
