@@ -833,7 +833,12 @@
 
 
   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
   <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  
+  
+  
   
   <script type="text/javascript">
     var GUEST = ['nick','mail'];
@@ -848,11 +853,11 @@
         appId: '7o3mogd7So9cgWcrgYQ4bKmB-MdYXbMMI',
         appKey: 'GmPDm40j7prvzfTBdDpM8zHI',
         lang: 'en',
-        placeholder: 'Email is optional and will not be displayed. With email provided, you will be informed via email once you get a reply.',
+        placeholder: 'Email is confidential and will not be displayed. With email provided, you will be informed via email once you get a reply.',
         avatar:'hide',
         guest_info:guest,
+	visitor: true,
         pageSize:'10' || 10,
-	visitor: true, //访客人数
 	serverURLs: 'https://7o3mogd7.api.lncldglobal.com' //在_config.yml中控制valine指向的服务器
     });
   </script>
