@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://11141015.github.io/2020/11/18/%E8%80%83%E8%AF%95%E5%91%A8%E6%9A%82%E6%97%B6%E5%81%9C%E6%9B%B4/</loc>
+    
+    <lastmod>2020-11-18</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://11141015.github.io/2020/11/14/%E5%B0%8F%E5%90%B4%E7%9A%8422%E5%B2%81%E7%94%9F%E6%97%A5/</loc>
     
     <lastmod>2020-11-17</lastmod>
@@ -32,7 +39,7 @@
 
   <url>
     <loc>https://11141015.github.io/</loc>
-    <lastmod>2020-11-17</lastmod>
+    <lastmod>2020-11-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
